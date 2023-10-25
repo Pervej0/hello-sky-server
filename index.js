@@ -6,7 +6,10 @@ const app = express();
 require("dotenv").config();
 const getTravels = require("./routes/travels.router");
 const getSingleTravel = require("./routes/travels.router");
-const getTravelsPost = require("./routes/travelPost.router");
+const getExplorePosts = require("./routes/explorePosts.router");
+const getSingleExplorePost = require("./routes/explorePosts.router");
+const postUsers = require("./routes/users.router");
+const putUsers = require("./routes/users.router");
 
 // middleware
 app.use(cors());
@@ -29,11 +32,10 @@ const run = async () => {
     await client.connect();
     app.use(getTravels);
     app.use(getSingleTravel);
-    app.use(getTravelsPost);
-    // app.get("/travels_destination/:listId", async (req, res) => {
-    //   const query = req.params.listId;
-    //   res.send("fd");
-    // });
+    app.use(getExplorePosts);
+    app.use(getSingleExplorePost);
+    app.use(postUsers);
+    app.use(putUsers);
   } finally {
     // await client.close();
   }
