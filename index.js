@@ -10,6 +10,12 @@ const getExplorePosts = require("./routes/explorePosts.router");
 const getSingleExplorePost = require("./routes/explorePosts.router");
 const postUsers = require("./routes/users.router");
 const putUsers = require("./routes/users.router");
+const postBookingUsers = require("./routes/bookings.router");
+const getUsers = require("./routes/users.router");
+const getBookingUsers = require("./routes/bookings.router");
+const getBookedFlight = require("./routes/bookings.router");
+const deleteBookedFlight = require("./routes/bookings.router");
+const putBookedFlight = require("./routes/bookings.router");
 
 // middleware
 app.use(cors());
@@ -36,6 +42,12 @@ const run = async () => {
     app.use(getSingleExplorePost);
     app.use(postUsers);
     app.use(putUsers);
+    app.get(getUsers);
+    app.use(postBookingUsers);
+    app.use(getBookingUsers);
+    app.use(getBookedFlight);
+    app.use(deleteBookedFlight);
+    app.use(putBookedFlight);
   } finally {
     // await client.close();
   }

@@ -1,4 +1,5 @@
 const { usersCollection } = require("../models/users.model");
+const { use } = require("../routes/explorePosts.router");
 
 exports.postUsers = async (req, res) => {
   const data = req.body;
@@ -13,4 +14,9 @@ exports.putUsers = async (req, res) => {
   const update = { $set: filter };
   const result = await usersCollection.updateOne(filter, update, options);
   res.json(result);
+};
+
+exports.getUsers = async (req, res) => {
+  const users = await usersCollection.find({}).toArray();
+  res.send(users);
 };
