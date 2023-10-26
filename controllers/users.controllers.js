@@ -1,5 +1,4 @@
 const { usersCollection } = require("../models/users.model");
-const { use } = require("../routes/explorePosts.router");
 
 exports.postUsers = async (req, res) => {
   const data = req.body;
@@ -19,4 +18,19 @@ exports.putUsers = async (req, res) => {
 exports.getUsers = async (req, res) => {
   const users = await usersCollection.find({}).toArray();
   res.send(users);
+};
+
+exports.putAdminRole = async (req, res) => {
+  const data = req.body;
+  const filter = { email: data.email };
+  const update = { $set: { role: data.role } };
+  const result = await usersCollection.updateOne(filter, update);
+  res.json(result);
+};
+
+exports.getAdminRole = async (req, res) => {
+  const email = req.params.email;
+  const query = { email };
+  const result = await usersCollection.findOne(query);
+  res.json(result);
 };

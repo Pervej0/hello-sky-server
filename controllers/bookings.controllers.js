@@ -27,8 +27,10 @@ exports.deleteBookedFlight = async (req, res) => {
 };
 
 exports.putBookedFlight = async (req, res) => {
-  const st = req.body;
+  const st = req.body.status;
   const id = req.params.id;
-  // const filter = {_id: new ObjectId(id)}
-  console.log(id, st);
+  const filter = { _id: new ObjectId(id) };
+  const update = { $set: { status: st } };
+  const result = await bookingCollection.updateOne(filter, update);
+  res.json(result);
 };
