@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@vercel/node" }],
+  "routes": [
+    { "src": "/bookings", "dest": "index.js" },
+    { "src": "/travels_post", "dest": "index.js" },
+    { "src": "/travels_destination", "dest": "index.js" },
+    { "src": "/users", "dest": "index.js" }
+    { "src": "/admin", "dest": "index.js" }
+  ]
+}
